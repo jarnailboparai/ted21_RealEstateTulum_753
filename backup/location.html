@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Splash Screen</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../assets/css/fonts.css" />
+<link rel="stylesheet" href="css/jquery.mobile-1.4.0.css" />
+<link rel="stylesheet" href="css/theme.css" />
+<link rel="stylesheet" href="css/common_layout.css" />
+<link rel="stylesheet" href="css/splash.css" />
+<script src="js/jquery_1.9.1.js"></script>
+<script src="js/jquery.mobile-1.4.0.js"></script>
+
+
+
+
+<style type="text/css">
+img {
+	max-width:100%;
+}
+
+</style>
+<script>
+
+var myLatlng ;
+var geocoder;
+var map;
+var marker;
+// To add the marker to the map, call setMap();
+//marker.setMap(map);
+function initialize() {
+myLatlng = new google.maps.LatLng(30.7046486,76.71787259999996);
+geocoder = new google.maps.Geocoder();
+var latlng = new google.maps.LatLng(30.7046486,76.71787259999996);
+var mapOptions = {
+zoom: 11,
+center: latlng
+}
+map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+marker = new google.maps.Marker({
+position: latlng,
+title:'<h1>locationvalue</h1>',
+});
+marker.setMap(map);
+marker.setDraggable(true);
+google.maps.event.addListener(marker,'drag',function(event) {
+document.getElementById('lat').value = event.latLng.lat();
+document.getElementById('lng').value = event.latLng.lng();
+});
+google.maps.event.addListener(marker,'dragend',function(event) {
+document.getElementById('lat').value = event.latLng.lat();
+document.getElementById('lng').value = event.latLng.lng();
+getLo(event.latLng);
+});
+var address = '<h1>locationvalue</h1>';
+geocoder.geocode( { 'address': address}, function(results, status) {
+if (status == google.maps.GeocoderStatus.OK) {
+// console.log(results[0].geometry.location);
+map.setCenter(results[0].geometry.location);
+marker.setMap(map);
+marker.setDraggable(false);
+marker.setPosition(results[0].geometry.location);
+// var marker = new google.maps.Marker({
+// map: map,
+// position: results[0].geometry.location,
+// draggable:true,
+// });
+console.log(marker);
+} else {
+//alert('Geocode was not successful for the following reason: ' + status);
+}
+});
+}
+function codeAddress() {
+var address = '<h1>locationvalue</h1>';
+geocoder.geocode( { 'address': address}, function(results, status) {
+if (status == google.maps.GeocoderStatus.OK) {
+// console.log(results[0].geometry.location);
+map.setCenter(results[0].geometry.location);
+marker.setMap(map);
+marker.setDraggable(true);
+marker.setPosition(results[0].geometry.location);
+// var marker = new google.maps.Marker({
+// map: map,
+// position: results[0].geometry.location,
+// draggable:true,
+// });
+console.log(marker);
+} else {
+//alert('Geocode was not successful for the following reason: ' + status);
+}
+});
+}
+//google.maps.event.addDomListener(window, 'load', initialize);
+//google.maps.event.addDomListener(window, 'load', codeAddress);
+function getLo(arg){
+geocoder.geocode( { 'location': arg}, function(results, status) {
+if (status == google.maps.GeocoderStatus.OK) {
+console.log(results[0].formatted_address);
+jQuery('#address').val(results[0].formatted_address);
+} else {
+//alert('Geocode was not successful for the following reason: ' + status);
+}
+});
+}
+/*
+function initialize() {
+var mapOptions = {
+zoom: 8,
+center: new google.maps.LatLng(-34.397, 150.644)
+};
+var map = new google.maps.Map(document.getElementById('map-canvas'),
+mapOptions);
+}
+*/
+function loadScript() {
+var script = document.createElement('script');
+script.type = 'text/javascript';
+script.src = 'https://maps.googleapis.com/maps/api/js?v=3.expkey=AIzaSyBI4_1EiCrW3c3pzqq5fLLMQkD0EwwD9pc&sensor=false&' +
+'callback=initialize';
+document.body.appendChild(script);
+}
+window.onload = loadScript;
+setTimeout(loadScript,3000); 
+
+</script>
+</head>
+
+<body>
+<!-- Start of first page -->
+<div data-role="page" id="theme_layout" class="theme_bg"> 
+  <!-- Splash Screen starts here -->
+  
+  <!-- Header Starts Here -->
+  <div data-role="header"> <a href="index.html" class="refresh_link" data-role="button" rel="external" data-ajax="false" role="button"><img alt="home icon" src="images/home_icon.png"></a>
+    <h1>Location</h1>
+    <a class="help_link"><img src="images/help_icon.png" alt="help icon" /></a> </div>
+  <!-- /header ends here --> 
+  <div class="location">
+  <div class="iframewrapper">
+  <div id="map-canvas" style="float:left; height:100%; width:100%;position:absolute;"></div>
+  </div>
+  <!-- Location Address -->
+  <div class="location_address"><p><h1>locationvalue</h1><h1>locationarticle</h1></p></div> 
+  <!-- Location Address Ends Here -->
+  <div class="clr"></div>
+  </div>
+  
+  
+  <!-- Splash Screen Ends here -->
+  
+</div>
+<!-- /page --> 
+
+</body>
+</html>

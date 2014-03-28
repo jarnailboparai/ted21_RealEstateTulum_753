@@ -1,0 +1,35 @@
+@media (max-width: 1024px){
+	.logo{
+	padding-top:4%;
+	}	
+	
+}
+
+@media (max-width: 768px){
+	.logo{
+	padding-top:9%;
+		}	
+	
+}
+
+@media (max-width: 650px){
+	.logo {
+    padding-top: 14%;
+    width: 410px;
+	}
+	
+}
+
+@media (max-width: 480px){
+	.logo{
+	padding-top:4%;
+	width:370px;
+	}	
+}
+
+@media (max-width: 320px){
+	.logo {
+    padding-top: 8%;
+    width: 262px;
+	}
+}

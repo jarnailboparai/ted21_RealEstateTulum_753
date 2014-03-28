@@ -1,0 +1,39 @@
+@media (max-width: 1024px){
+	.logo{
+	padding:5% 0px 10%;
+	}	
+}
+@media (max-width: 768px){
+	.logo{
+	padding:28% 0px 20%;
+		}	
+}
+@media (max-width: 650px){
+	.logo {
+    padding-top:4%;
+    width: 410px;
+	}
+	.white_wrap table {
+    width: 400px;
+	}
+}
+
+@media (max-width: 480px){
+	.logo{
+	padding:8% 0px 20%;
+	width:370px;
+	}	
+	.white_wrap table {
+    width: 340px;
+	}
+}
+
+@media (max-width: 350px){
+	.logo {
+    padding-top: 25%;
+    width: 262px;
+	}
+	.white_wrap table {
+    width: 300px;
+	}
+}

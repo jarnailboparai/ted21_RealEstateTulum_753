@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Wooden Theme Video Gallery</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/jquery.mobile-1.4.0.css" />
+<link rel="stylesheet" href="css/theme.css" />
+<link rel="stylesheet" href="css/common_layout.css" />
+<script src="js/jquery_1.9.1.js"></script>
+<script src="js/jquery.mobile-1.4.0.js"></script>
+<!-- Photo Gallery settings starts here -->
+<link rel="stylesheet" href="css/photoswipe.css" />
+<link rel="stylesheet" href="css/styles.css" />
+<script type="text/javascript" src="js/simple-inheritance.min.js"></script>
+<script type="text/javascript" src="js/code-photoswipe-1.0.11.js"></script>
+<script type="text/javascript">
+		
+		/*
+		 This example shows how to set up the gallery without
+		 using the Code.photoSwipe() helper or the $.photoSwipe() jQuery plugin.
+		 
+		 The example finds the Gallery container, then finds all anchor tags in 
+		 the container (thumbnails).
+		 
+		 It then sets a click event listener on the container.
+		 
+		 When the user clicks the container, it checks to see if an image has been
+		 clicked (i.e. a thumbnail).
+		 
+		 It then attempts to find the index number of the thumbnail clicked 
+		 (from our list of thumbnails) and starts PhotoSwipe at that index.
+		 */
+		 
+		if(typeof document.querySelectorAll === 'function') {
+			
+			document.addEventListener('DOMContentLoaded', function(){
+				
+				// Find the element holding our photos
+				var galleryEl = document.getElementById('Gallery');
+				
+				
+				// Find all the photos in our gallery
+				var thumbEls = galleryEl.querySelectorAll('a');
+				
+				if (thumbEls.length < 1) {
+					return;
+				}
+				
+				// Set options (optional)
+				Code.PhotoSwipe.Current.setOptions({
+					loop: false
+				});
+				
+				
+				// Tell PhotoSwipe about the photos
+				Code.PhotoSwipe.Current.setImages(thumbEls);
+				
+				
+				// Listen out for when the user clicks the gallery
+				galleryEl.addEventListener('click', function(e){
+					
+					// If we clicked an image, start the gallery at that image
+					if (e.target.nodeName !== 'IMG'){
+						return;
+					}
+					
+					e.preventDefault();
+					
+					var linkEl = e.target.parentNode;
+					
+					var startingIndex = 0;
+					for (startingIndex; startingIndex<thumbEls.length; startingIndex++){
+						if (thumbEls[startingIndex] === linkEl){
+							break;
+						}
+					}
+					
+					// Start PhotoSwipe
+					Code.PhotoSwipe.Current.show(startingIndex);
+				
+				}, false);
+			
+			
+			}, false); 
+			
+		}
+		
+	</script>
+<!-- Photo Gallery Settings Ends Here -->
+
+<style type="text/css">
+img {
+	max-width:100%;
+}
+</style>
+</head>
+
+<body>
+<!-- Start of first page -->
+<div data-role="page" id="theme_layout" class="theme_bg"> 
+  
+  <!-- Header Starts Here -->
+  <div data-role="header"> <a class="refresh_link" id="back-link" href="index.html" rel="external" data-ajax="false"><img src="images/home_icon.png" alt="home icon" /></a>
+    <h1>Video Gallery</h1>
+    <a class="help_link"><img src="images/help_icon.png" alt="help icon" /></a> </div>
+  <!-- /header ends here --> 
+  <!-- Video Gallery Starts Here -->
+  <div id="Gallery" class="video_gallery_new">
+	<!-- Gallery Code Starts Here -->
+    
+		<ul data-role="listview">
+    <li><a href="#popupVideo" data-rel="popup" data-position-to="window">
+        <img src="images/thumb/015.jpg">
+    <h2>Broken Bells</h2>
+    <p>Broken Bells</p></a>
+    </li>
+    <li><a href="#">
+        <img src="images/thumb/014.jpg">
+    <h2>Warning</h2>
+    <p>Hot Chip</p></a>
+    </li>
+    <li><a href="#">
+        <img src="images/thumb/013.jpg">
+    <h2>Wolfgang Amadeus Phoenix</h2>
+    <p>Phoenix</p></a>
+    </li>
+</ul>
+        
+        </div>
+  <!-- Gallery Code Ends Here -->
+  
+  
+  
+  <!-- Video Gallery Ends Here --> 
+  
+</div>
+<!-- /page --> 
+
+</body>
+</html>
