@@ -1,8 +1,9 @@
 
 .theme_bg{
-	background:#22a201 !important;
+	background:#22a201;
 	min-width:320px;
 	background-size:100% ;
+	background-position: top center;
 }
 .logo{
 	padding-top:28%;
@@ -26,9 +27,9 @@
 	text-align:center;
 }
 .ui-header{
-	background:#22a201 !important;
+	background:url("../images/header_bg.png") repeat scroll 0 0 rgba(0, 0, 0, 0) !important;
 	border:none !important;
-	border-bottom:1px solid #209602 !important;
+	border-bottom:none !important;
 	
 }
 .ui-header a{
@@ -69,5 +70,6 @@
 	max-height:32px;
 	max-width:32px;
 }
+<!--themebgcolor-->
 
 

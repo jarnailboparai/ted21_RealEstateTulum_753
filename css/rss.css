@@ -1,0 +1,33 @@
+.rsslist {
+	font-family: Arial, Verdana, Trebuchet MS, Helvetica, lucida grande, "sans-serif";
+        font-size: 12px;	
+}
+.rsslist ul {
+        list-style-type: none;
+        margin: 0px;
+        padding: 0px;
+      }
+     .rsslist li {
+        padding: 10px;
+        border-top: 1px dashed #AAA;
+        background-color: #EFEFEF;
+      }
+     .rsslist li:first-child {
+        border-top: none;
+      }
+     .rsslist li:nth-child(2n) {
+        background-color: white;
+      }
+	  
+	.rsslist   a {
+        color: #37D;
+        text-decoration: none;
+      }
+    .rsslist   a:hover {
+        text-decoration: underline;
+      }
+	  .error_rss{
+	  	color:#fff;
+		font-size:15px;
+		font-weight:600;
+	  }

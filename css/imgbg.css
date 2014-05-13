@@ -1,0 +1,20 @@
+@media (min-width: 400px) {
+.theme_bg
+{
+	/*background-image:url(../images/land.jpg);*/
+	pankajpanga
+	background-repeat:no-repeat;
+	background-size:cover;	
+	background-position:center;
+}
+}
+@media (min-width: 100px) and (max-width: 399px) {
+.theme_bg
+{
+	/*background-image:url(../images/port.jpg);*/
+	pangapankaj
+	background-repeat:no-repeat;
+	background-size:cover;	
+	background-position:center;
+}
+}

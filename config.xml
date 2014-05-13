@@ -28,11 +28,9 @@
 
 
 
-    <!-- 
+    <preference name="phonegap-version" value="3.4.0" />
 
-    <preference name="phonegap-version" value="2.1.0" />
-
-    -->
+    
 
     <preference name="orientation"      value="default" />
 
@@ -53,6 +51,8 @@
     <gap:platform name="android" />
 
     <gap:plugin name="com.phonegap.plugins.pushplugin" />
+
+    <gap:plugin name="org.li8.inappbrowser" version="0.1" />
 
 
 

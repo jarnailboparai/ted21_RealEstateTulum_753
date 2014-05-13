@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Wooden Theme</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="stylesheet" href="../../assets/css/fonts.css" />
+<link rel="stylesheet" href="css/jquery.mobile-1.4.0.css" />
+<link rel="stylesheet" href="css/theme.css" />
+<link rel="stylesheet" href="css/common_layout.css" />
+<link rel="stylesheet" href="css/squeeze.css" />
+<!--ThemeSettingSubpage-->
+<!--ThemeSetting-->
+<script src="cordova.js"></script>
+<script src="js/jquery_1.9.1.js"></script>
+<script src="js/validate.js"></script>
+<script src="js/validate_aweber.js"></script>
+<script src="js/jquery.mobile-1.4.0.js"></script>
+<script>
+jQuery( document ).bind( "mobileinit", function() {
+    // Make your jQuery Mobile framework configuration changes here!
+
+    jQuery.mobile.allowCrossDomainPages = true;
+
+});
+
+$(document).ajaxStart(function() {
+    $.mobile.loading('show');
+});
+
+$(document).ajaxStop(function() {
+    $.mobile.loading('hide');
+});
+
+jQuery(document).ready(function(){
+	
+	jQuery('#module-form-aweber').on('submit',function(e){
+		e.preventDefault();
+	    var postData = $(this).serialize();
+	    var actionUrl = document.getElementById('module-form-aweber');
+	 	console.log(actionUrl.action);
+		if($("#module-form-aweber").valid())	{
+	    $.ajax({
+	        type: 'POST',
+	       	url: actionUrl.action,
+	       	//crossDomain:true,
+	      	dataType:'application/json; charset=utf-8',
+	        data: postData,
+	        success: function(response){
+					
+	        	var argtt = response.responseText;
+				var arg = JSON.parse(response.responseText);
+
+				if(arg.success==1)
+				{
+					$('.squeeze_wrapper').html("");
+					$('.squeeze_wrapper').html("<div class='no_data'>Submit Successfully</div>");
+				}
+				else
+				{
+					$('.squeeze_wrapper').html("");
+					$('.squeeze_wrapper').html("<div class='no_data'>Error ! Please try after sometime</div>");
+				}
+	        	//popdetialHideOther(arg);
+	        },
+	        error: function(response){
+				
+	        	var argtt = response.responseText;
+				var arg = JSON.parse(response.responseText);
+
+				if(arg.success==1)
+				{
+					$('.squeeze_wrapper').hide();
+					$('.thankyou_msg').show();
+				}
+				else
+				{
+					$('.squeeze_wrapper').html("");
+					$('.squeeze_wrapper').html("<div class='no_data'>Error ! Please try after sometime</div>");
+				}
+	        	
+	        },
+	    }); 
+	}
+	});
+
+	
+	
+});
+
+</script>
+<style type="text/css">
+img {
+	max-width:100%;
+}
+</style>
+</head>
+
+<body>
+<!-- Start of first page -->
+<div data-role="page" id="theme_layout" class="theme_bg"> 
+  
+  <!-- Header Starts Here -->
+  <div data-role="header"> <a href="index.html" class="refresh_link" data-role="button" rel="external" data-ajax="false" role="button"><img src="images/home_icon.png" alt="home icon" /></a>
+    <h1>AWeber Page</h1>
+    <a class="help_link"><img src="images/help_icon.png" alt="help icon" /></a> </div>
+  <!-- /header ends here --> 
+  <!-- Squeeze Page starts here -->
+ 	<div class="squeeze_wrapper">
+   
+<div class="squeeze_desc">
+	<!--DescriptionEnter-->
+</div>
+<div class="squeeze_desc aweber_note">
+    <form action="<!--url-->" method="POST" id='module-form-aweber'>
+	    <input name="aweberapp_id" type="hidden" value="<!--aweberapp_id-->" />
+	    <input name="list_id" type="hidden"  value="<!--list_id-->" />
+	    <input name="app_id" type="hidden" value="<!--app_id-->" />
+	    <input name="user_id" type="hidden"  value="<!--user_id-->" />
+	    <input name="module_id" type="hidden" value="<!--module_id-->" />
+	    <input name="module_name" type="hidden"  value="<!--module_name-->" />
+	    <input name="name" type="text" placeholder="Name" />
+	    <input name="email" type="text" placeholder="Email" />
+		
+    	<input type="submit" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini" value="Submit" />
+    	<!--Legaltext-->
+    </form>
+    </div>
+    </div>
+ <div id="testing" class="testing" ></div>
+  <!-- Squeeze Page Ends here -->
+  
+  
+  <!-- thank you message -->
+  <div class="thankyou_msg"><!--Thankyou--></div>
+  
+  <!-- Thankyou message ends here -->
+</div>
+<!-- /page --> 
+
+</body>
+</html>

@@ -11,15 +11,32 @@
 <link rel="stylesheet" href="css/common_layout.css" />
 <link rel="stylesheet" href="css/static_page.css" />
 <!--ThemeSetting-->
+
+
+
+<script src="cordova.js"></script>
+
+
 <script src="js/jquery_1.9.1.js"></script>
 <script src="js/jquery.mobile-1.4.0.js"></script>
-<script type="text/javascript">
-   $(document).ready(function() {
-      $('#back-link').click(function() {
-         history.go(-1) 
-       });
-   });
-</script>
+
+<!-- rss setting starts here -->
+<script src="js/jquery.rss.js"></script>
+   <link rel="stylesheet" href="css/rss.css" />
+	<script>
+	  jQuery(function($) {
+        $("#rss-feeds").rss("<!--RssFeedsLink-->", {
+          limit: 15,
+         // effect: 'slideFastSynced',
+		   error: function() {
+       		$(".error_rss").addClass("no_data");
+			$(".error_rss").html("Url doesn't link to RSS-Feed");
+      },
+        })
+      })
+    </script>
+
+<!-- rss setting ends here -->
 
 
 <style type="text/css">
@@ -34,15 +51,18 @@ img {
 <div data-role="page" id="theme_layout" class="theme_bg"> 
   
   <!-- Header Starts Here -->
-  <div data-role="header"> <a class="refresh_link" id="back-link" href="#"><img src="images/home_icon.png" alt="home icon" /></a>
-    <h1>Static Page</h1>
+  <div data-role="header"> <a href="index.html" class="refresh_link" data-role="button" rel="external" data-ajax="false" role="button"><img src="images/home_icon.png" alt="home icon" /></a>
+    <h1>RSS Page</h1>
     <a class="help_link"><img src="images/help_icon.png" alt="help icon" /></a> </div>
   <!-- /header ends here --> 
-  <!-- Static Page starts here -->
+  <!-- rss list starts here -->
   
-  <div class="staticPageList"></div>
+  <div class="rsslist">
+  <div class="error_rss"></div>
+	 <div id="rss-feeds"></div>
+  </div>
   
-  <!-- Static Page Ends here -->
+  <!-- rss field ends here -->
   
 </div>
 <!-- /page --> 
